@@ -1,0 +1,13 @@
+// Bootstrap overrides
+
+.navbar {
+    background-color: $theme-primary !important;
+}
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    background-image: unset;
+}
+
+.nav-link {
+    cursor: pointer;
+}
