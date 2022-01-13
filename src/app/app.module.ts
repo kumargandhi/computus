@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './commom/components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, HeaderComponent],
@@ -14,6 +15,7 @@ import { HeaderComponent } from './commom/components/header/header.component';
         FormsModule,
         ReactiveFormsModule,
         AppRoutingModule,
+        BrowserAnimationsModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -11,3 +11,20 @@
 .nav-link {
     cursor: pointer;
 }
+
+.btn-icon {
+    color: #ffffff;
+}
+
+.btn-link:hover {
+    color: #ffffff;
+}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff;
+}

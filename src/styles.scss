@@ -4,6 +4,8 @@
 @import 'assets/fonts/open-sans-fonts';
 @import 'assets/scss/variables';
 @import 'assets/scss/bootstrap_overrides';
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
 
 html,
 body {
