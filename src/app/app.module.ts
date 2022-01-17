@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './commom/components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MortgageComponent } from './mortgage/mortgage.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, HeaderComponent],
+    declarations: [AppComponent, HomeComponent, HeaderComponent, MortgageComponent],
     imports: [
         BrowserModule,
         FormsModule,
