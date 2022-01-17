@@ -8,9 +8,16 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './commom/components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MortgageComponent } from './mortgage/mortgage.component';
+import { EmiComponent } from './emi/emi.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, HeaderComponent, MortgageComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        MortgageComponent,
+        EmiComponent,
+    ],
     imports: [
         BrowserModule,
         FormsModule,

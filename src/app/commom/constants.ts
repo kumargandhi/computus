@@ -7,4 +7,8 @@ export const Header_Menu = [
         label: 'Mortgage',
         routerLink: ['mortgage'],
     },
+    {
+        label: 'EMI',
+        routerLink: ['emi'],
+    },
 ];
