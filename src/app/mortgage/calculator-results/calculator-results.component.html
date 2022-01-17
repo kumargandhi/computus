@@ -1,0 +1,61 @@
+<div
+    class="data-container shadow"
+    *ngIf="resultsCalculated && !errorModel.errorMsg"
+>
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Repayment summary</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
+            <span class="text-primary fw-bold">
+                {{ computedValues?.monthlyPayment | nf }}
+            </span>
+            - is your monthly payment.
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
+            <span class="text-primary fw-bold">
+                {{ totalInterestPaid | nf }}
+            </span>
+            - is the total interest paid.
+        </div>
+    </div>
+    <h6 class="text-secondary text-center pt-2">Payment information</h6>
+    <table class="table table-borderless table-striped mt-1">
+        <thead>
+            <tr>
+                <th scope="col">Month</th>
+                <th scope="col">Interest</th>
+                <th scope="col">Principal</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of monthlyPayments">
+                <th scope="row">{{ item.monthlyResult?.month }}</th>
+                <td>{{ item.monthlyResult?.interest | nf }}</td>
+                <td>{{ item.monthlyResult?.principal | nf }}</td>
+                <td>{{ item.monthlyResult?.balance | nf }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
+</div>

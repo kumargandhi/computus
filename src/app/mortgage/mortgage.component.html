@@ -1,1 +1,21 @@
-<p>mortgage works!</p>
+<div class="row pt-6" id="page-container">
+    <h4 id="page-title">{{ title }}</h4>
+    <p id="page-desc">
+        Mortgages are loans that are used to buy homes and other types of real
+        estate.
+    </p>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <app-calculator-inputs
+            (inputsSubmitted)="inputsSubmitted($event)"
+        ></app-calculator-inputs>
+    </div>
+    <div class="vr mx-1 px-0"></div>
+    <div class="col-md-5 results-container">
+        <app-calculator-results
+            [title]="title"
+            [calculatorInputs]="calculatorInputs"
+        ></app-calculator-results>
+    </div>
+    <div class="col-md-1"></div>
+</div>
