@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { CalculatorInputsComponent } from './mortgage/calculator-inputs/calculat
 import { CalculatorResultsComponent } from './mortgage/calculator-results/calculator-results.component';
 import { EmiComponent } from './emi/emi.component';
 import { NumberFormatterPipe } from './commom/pipes/number-formatter.pipe';
+import { InfoComponent } from './commom/components/info/info.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +25,7 @@ import { NumberFormatterPipe } from './commom/pipes/number-formatter.pipe';
         CalculatorInputsComponent,
         CalculatorResultsComponent,
         EmiComponent,
+        InfoComponent,
     ],
     imports: [
         BrowserModule,
@@ -30,6 +33,7 @@ import { NumberFormatterPipe } from './commom/pipes/number-formatter.pipe';
         ReactiveFormsModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        ModalModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent],
