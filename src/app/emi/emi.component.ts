@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 
 @Component({
     selector: 'app-emi',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./emi.component.scss'],
 })
 export class EmiComponent implements OnInit {
+
+    @Input() title = 'EMI Calculator';
+
     constructor() {}
 
     ngOnInit(): void {}

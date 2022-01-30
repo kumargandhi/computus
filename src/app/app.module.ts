@@ -14,6 +14,7 @@ import { CalculatorResultsComponent } from './mortgage/calculator-results/calcul
 import { EmiComponent } from './emi/emi.component';
 import { NumberFormatterPipe } from './commom/pipes/number-formatter.pipe';
 import { InfoComponent } from './commom/components/info/info.component';
+import { EMICalculatorInputsComponent } from './emi/calculator-inputs/emi-calculator-inputs.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { InfoComponent } from './commom/components/info/info.component';
         CalculatorInputsComponent,
         CalculatorResultsComponent,
         EmiComponent,
+        EMICalculatorInputsComponent,
         InfoComponent,
     ],
     imports: [
