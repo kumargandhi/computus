@@ -1,1 +1,44 @@
-<p>calculator-inputs works!</p>
+<div *ngIf="form?.invalid" class="alert alert-info" role="alert">
+    Enter values in the form and click submit to compute the monthly payments.
+</div>
+<form
+    class="needs-validation shadow data-container"
+    [formGroup]="form"
+    [class.was-validated]="isFormSubmitted"
+>
+    <h5 class="text-secondary">Loan details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="loanAmount" class="form-label">Loan amount:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="loanAmount"
+                    placeholder="Enter loan amount..."
+                    formControlName="loanAmount"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['loanAmount'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.required"
+                >
+                    Loan amount cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.pattern"
+                >
+                    Loan amount must be a positive integer
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
