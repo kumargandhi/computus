@@ -1,9 +1,3 @@
-$container-height: 90%;
-
-.results-container {
-    height: $container-height;
-    overflow: scroll;
-}
-.vr {
-    height: $container-height;
+.row {
+    width: 70%;
 }

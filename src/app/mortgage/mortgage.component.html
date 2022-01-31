@@ -1,21 +1,22 @@
-<div class="row pt-6" id="page-container">
-    <h4 id="page-title">{{ title }}</h4>
-    <p id="page-desc">
+<div id="page-container">
+    <h4 class="row" id="page-title">{{ title }}</h4>
+    <p class="row" id="page-desc">
         Mortgages are loans that are used to buy homes and other types of real
         estate.
     </p>
-    <div class="col-md-1"></div>
-    <div class="col-md-5">
-        <app-calculator-inputs
-            (inputsSubmitted)="inputsSubmitted($event)"
-        ></app-calculator-inputs>
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <app-calculator-inputs
+                (inputsSubmitted)="inputsSubmitted($event)"
+            ></app-calculator-inputs>
+        </div>
     </div>
-    <div class="vr mx-1 px-0"></div>
-    <div class="col-md-5 results-container">
-        <app-calculator-results
-            [title]="title"
-            [calculatorInputs]="calculatorInputs"
-        ></app-calculator-results>
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <app-calculator-results
+                [title]="title"
+                [calculatorInputs]="calculatorInputs"
+            ></app-calculator-results>
+        </div>
     </div>
-    <div class="col-md-1"></div>
 </div>

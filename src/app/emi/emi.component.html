@@ -1,13 +1,15 @@
-<div class="row pt-6" id="page-container">
-    <h4 id="page-title">{{ title }}</h4>
-    <p id="page-desc">
-        EMI stands for equity monthly installment that are paid towards repayment of loan.
+<div id="page-container">
+    <h4 class="row" id="page-title">{{ title }}</h4>
+    <p class="row" id="page-desc">
+        EMI stands for equity monthly installment that are paid towards
+        repayment of loan.
     </p>
-    <div class="col-md-1"></div>
-    <div class="col-md-5">
-        <app-emi-calculator-inputs></app-emi-calculator-inputs>
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <app-emi-calculator-inputs></app-emi-calculator-inputs>
+        </div>
     </div>
-    <div class="vr mx-1 px-0"></div>
-    <div class="col-md-5 results-container"></div>
-    <div class="col-md-1"></div>
+    <div class="row">
+        <div class="col-md-12 p-0"></div>
+    </div>
 </div>
