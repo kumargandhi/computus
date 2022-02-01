@@ -109,7 +109,47 @@ export class EmiCalculatorResultsComponent implements OnInit {
     }
 
     private _getLoanDetails() {
-        const loanDetails = '';
+        let loanDetails = '';
+        loanDetails =
+            'EMI details:' +
+            '\n\n' +
+            'Loan amount: ' +
+            this.nf.transform(this._calculatorInputs.loanAmount);
+        loanDetails =
+            loanDetails +
+            '\n' +
+            'Selected Tenure: ' + this._calculatorInputs.tenure;
+        loanDetails =
+            loanDetails +
+            '\n' +
+            `Tenure (${this._calculatorInputs.tenure}): ` +
+            this.nf.transform(this._calculatorInputs.tenureValue);
+        loanDetails =
+            loanDetails +
+            '\n' +
+            'Interest (% p.a) reducing: ' +
+            this.nf.transform(this._calculatorInputs.interestRate);
+        loanDetails = loanDetails + '\n\n' + 'Repayment summary:';
+        loanDetails =
+            loanDetails +
+            '\n\n' +
+            this.nf.transform(this.computedValues.emi) +
+            ' - is your EMI.';
+        loanDetails =
+            loanDetails +
+            '\n' +
+            this.nf.transform(this.computedValues.principalAmount) +
+            ' - is Principal Amount.';
+        loanDetails =
+            loanDetails +
+            '\n' +
+            this.nf.transform(this.computedValues.interestAmount) +
+            ' - is Total Interest Amount.';
+        loanDetails =
+            loanDetails +
+            '\n' +
+            this.nf.transform(this.computedValues.totalPayable) +
+            ' - is Total Payable Amount.';
         return loanDetails;
     }
 }
