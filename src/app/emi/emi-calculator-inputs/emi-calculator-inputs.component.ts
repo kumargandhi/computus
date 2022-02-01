@@ -24,6 +24,8 @@ import { takeUntil } from 'rxjs/operators';
     providers: [DestroyService],
 })
 export class EMICalculatorInputsComponent implements OnInit {
+    readonly EMI_TENURE = EMI_TENURE;
+
     @Output() inputsSubmitted =
         new EventEmitter<EMICalculatorInputsInterface>();
 
@@ -52,7 +54,13 @@ export class EMICalculatorInputsComponent implements OnInit {
                 ]),
             ],
             tenure: [EMI_TENURE.Monthly],
-            tenureValue: [36],
+            tenureValue: [
+                36,
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern(INTEGER_REGEXP),
+                ]),
+            ],
         });
         this.form.valueChanges
             .pipe(takeUntil(this._destroy$))

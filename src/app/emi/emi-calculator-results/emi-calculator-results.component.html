@@ -1,0 +1,48 @@
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
+</div>
+<div class="data-container" *ngIf="resultsCalculated && !errorModel.errorMsg">
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Repayment summary</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
+            <span class="text-primary fw-bold">
+                {{ computedValues?.emi | nf }}
+            </span>
+            - is your EMI.
+        </div>
+    </div>
+    <h6 class="text-secondary text-center pt-2">Summary</h6>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Principal Amount</td>
+                <td>{{ computedValues?.principalAmount | nf }}</td>
+            </tr>
+            <tr>
+                <td>Interest Amount</td>
+                <td>{{ computedValues?.interestAmount | nf }}</td>
+            </tr>
+            <tr>
+                <td>Total Amount Payable</td>
+                <td>{{ computedValues?.totalPayable | nf }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

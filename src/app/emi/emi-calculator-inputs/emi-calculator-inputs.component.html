@@ -1,0 +1,158 @@
+<div *ngIf="form?.invalid" class="alert alert-info" role="alert">
+    Enter values in the form and click submit to compute the monthly payments.
+</div>
+<form
+    class="needs-validation data-container"
+    [formGroup]="form"
+    [class.was-validated]="isFormSubmitted"
+>
+    <h5 class="text-secondary">Loan details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="loanAmount" class="form-label">Loan amount:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="loanAmount"
+                    placeholder="Enter loan amount..."
+                    formControlName="loanAmount"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['loanAmount'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.required"
+                >
+                    Loan amount cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.pattern"
+                >
+                    Loan amount must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pe-3">Tenure:</label>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ EMI_TENURE.Monthly }}"
+                        value="{{ EMI_TENURE.Monthly }}"
+                        formControlName="tenure"
+                        name="tenure"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['tenure'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ EMI_TENURE.Monthly }}"
+                        >{{ EMI_TENURE.Monthly }}</label
+                    >
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ EMI_TENURE.Yearly }}"
+                        value="{{ EMI_TENURE.Yearly }}"
+                        formControlName="tenure"
+                        name="tenure"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['tenure'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ EMI_TENURE.Yearly }}"
+                        >{{ EMI_TENURE.Yearly }}</label
+                    >
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="tenureValue" class="form-label"
+                    >Enter tenure ({{ form?.controls?.tenure?.value }}):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="tenureValue"
+                    placeholder="Enter tenure..."
+                    formControlName="tenureValue"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['tenureValue'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['tenureValue'].errors?.required"
+                >
+                    Tenure cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['tenureValue'].errors?.pattern"
+                >
+                    Tenure must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="interestRate" class="form-label"
+                    >Interest (% p.a) reducing:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="interestRate"
+                    placeholder="Enter tenure..."
+                    formControlName="interestRate"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['interestRate'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interestRate'].errors?.required"
+                >
+                    Interest cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interestRate'].errors?.pattern"
+                >
+                    Interest must be a positive integer or decimal
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Calculate
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
