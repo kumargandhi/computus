@@ -28,20 +28,23 @@
             - is your EMI.
         </div>
     </div>
-    <h6 class="text-secondary text-center pt-2">Summary</h6>
-    <table class="table">
+    <table class="table table-striped mt-6">
         <tbody>
             <tr>
-                <td>Principal Amount</td>
+                <td class="fw-bold">Principal Amount</td>
                 <td>{{ computedValues?.principalAmount | nf }}</td>
             </tr>
             <tr>
-                <td>Interest Amount</td>
-                <td>{{ computedValues?.interestAmount | nf }}</td>
+                <td class="fw-bold">Interest Amount</td>
+                <td class="text-success">
+                    (+) {{ computedValues?.interestAmount | nf }}
+                </td>
             </tr>
             <tr>
-                <td>Total Amount Payable</td>
-                <td>{{ computedValues?.totalPayable | nf }}</td>
+                <td class="fw-bold">Total Amount Payable</td>
+                <td class="text-danger">
+                    {{ computedValues?.totalPayable | nf }}
+                </td>
             </tr>
         </tbody>
     </table>

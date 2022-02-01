@@ -16,8 +16,12 @@
     color: $theme-white;
 }
 
-.btn-link:hover {
+.btn-link {
     color: $theme-white;
+}
+
+.btn-link:hover {
+    color: $theme-gray;
 }
 
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {

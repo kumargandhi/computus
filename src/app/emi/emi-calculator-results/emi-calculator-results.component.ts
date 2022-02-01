@@ -118,7 +118,8 @@ export class EmiCalculatorResultsComponent implements OnInit {
         loanDetails =
             loanDetails +
             '\n' +
-            'Selected Tenure: ' + this._calculatorInputs.tenure;
+            'Selected Tenure: ' +
+            this._calculatorInputs.tenure;
         loanDetails =
             loanDetails +
             '\n' +

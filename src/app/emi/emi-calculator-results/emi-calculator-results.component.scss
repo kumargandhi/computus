@@ -1,0 +1,19 @@
+.data-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    .row {
+        width: 100%;
+    }
+
+    table {
+        margin-top: 15px;
+        max-width: 600px;
+
+        td {
+            text-align: center;
+        }
+    }
+}
