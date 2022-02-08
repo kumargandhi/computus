@@ -80,13 +80,12 @@ export class InterestCalculatorInputsComponent implements OnInit {
     validateForm() {
         this.isFormSubmitted = true;
         if (this.form.valid) {
-            const { principal, year, rate, compoundedInterest } =
-                this.form.controls;
+            const { principal, year, rate } = this.form.controls;
             this.inputsSubmitted.emit({
                 principal: principal.value,
                 year: year.value,
                 rate: rate.value,
-                compoundedInterest: compoundedInterest.value,
+                compoundedInterest: this.selectedInterestType,
             });
         }
     }
@@ -100,5 +99,6 @@ export class InterestCalculatorInputsComponent implements OnInit {
 
     interestTypeChanged(value: COMPOUNDED_INTEREST_TYPE) {
         this.selectedInterestType = value;
+        this.validateForm();
     }
 }

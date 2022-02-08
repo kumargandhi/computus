@@ -1,115 +1,129 @@
-<div *ngIf="form?.invalid" class="alert alert-info" role="alert">
-  Enter values in the form and click submit to compute the interest.
+<div *ngIf="form?.invalid" class="alert alert-danger" role="alert">
+    Enter values in the form and click submit to compute the interest.
 </div>
 <form
     class="needs-validation data-container"
     [formGroup]="form"
     [class.was-validated]="isFormSubmitted"
 >
-  <h5 class="text-secondary">Loan details</h5>
-  <div class="row py-3">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <div class="mb-3">
-        <label for="principal" class="form-label">Principal:</label>
-        <input
-            type="text"
-            class="form-control"
-            id="principal"
-            placeholder="Enter loan amount..."
-            formControlName="principal"
-            [ngClass]="{
+    <h5 class="text-secondary">Loan details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="principal" class="form-label">Principal:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="principal"
+                    placeholder="Enter loan amount..."
+                    formControlName="principal"
+                    [ngClass]="{
                         'is-invalid':
-                            isFormSubmitted &&
-                            form.controls['principal'].errors
+                            isFormSubmitted && form.controls['principal'].errors
                     }"
-            required
-        />
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['principal'].errors?.required"
-        >
-          Principal cannot be empty
-        </div>
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['principal'].errors?.pattern"
-        >
-          Principal must be a positive integer
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="year" class="form-label">Year:</label>
-        <input
-            type="text"
-            class="form-control"
-            id="year"
-            placeholder="Enter loan amount..."
-            formControlName="year"
-            [ngClass]="{
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['principal'].errors?.required"
+                >
+                    Principal cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['principal'].errors?.pattern"
+                >
+                    Principal must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="year"
+                    placeholder="Enter loan amount..."
+                    formControlName="year"
+                    [ngClass]="{
                         'is-invalid':
-                            isFormSubmitted &&
-                            form.controls['year'].errors
+                            isFormSubmitted && form.controls['year'].errors
                     }"
-            required
-        />
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['year'].errors?.required"
-        >
-          Year cannot be empty
-        </div>
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['year'].errors?.pattern"
-        >
-          Year must be a positive integer
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="rate" class="form-label"
-        >Rate:</label
-        >
-        <input
-            type="text"
-            class="form-control"
-            id="rate"
-            placeholder="Enter tenure..."
-            formControlName="rate"
-            [ngClass]="{
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['year'].errors?.required"
+                >
+                    Year cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['year'].errors?.pattern"
+                >
+                    Year must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="rate" class="form-label">Rate (%):</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="rate"
+                    placeholder="Enter tenure..."
+                    formControlName="rate"
+                    [ngClass]="{
                         'is-invalid':
-                            isFormSubmitted &&
-                            form.controls['rate'].errors
+                            isFormSubmitted && form.controls['rate'].errors
                     }"
-            required
-        />
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['rate'].errors?.required"
-        >
-          Rate cannot be empty
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['rate'].errors?.required"
+                >
+                    Rate cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['rate'].errors?.pattern"
+                >
+                    Rate must be a positive integer or decimal
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="rate" class="form-label">Compounded interest:</label>
+                <div class="btn-group ms-3">
+                    <button
+                        class="btn btn-secondary btn-sm dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        {{ selectedInterestType }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                *ngFor="let item of interestTypes"
+                                [class.active]="item === selectedInterestType"
+                                (click)="interestTypeChanged(item)"
+                                >{{ item }}</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Calculate
+                </button>
+            </div>
         </div>
-        <div
-            class="invalid-feedback"
-            *ngIf="form.controls['rate'].errors?.pattern"
-        >
-          Rate must be a positive integer or decimal
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="rate" class="form-label"
-        >Rate:</label
-        >
-        <div class="btn-group">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ selectedInterestType }}
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" *ngFor="let item of interestTypes"
-                   [class.active]="item === selectedInterestType" (click)="interestTypeChanged(item)">{{ item }}</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
 </form>

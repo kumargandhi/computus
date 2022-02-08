@@ -18,6 +18,7 @@ import { EMICalculatorInputsComponent } from './emi/emi-calculator-inputs/emi-ca
 import { EmiCalculatorResultsComponent } from './emi/emi-calculator-results/emi-calculator-results.component';
 import { InterestComponent } from './interest/interest.component';
 import { InterestCalculatorInputsComponent } from './interest/interest-calculator-inputs/interest-calculator-inputs.component';
+import { InterestCalculatorResultsComponent } from './interest/interest-calculator-results/interest-calculator-results.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { InterestCalculatorInputsComponent } from './interest/interest-calculato
         EmiCalculatorResultsComponent,
         InterestComponent,
         InterestCalculatorInputsComponent,
+        InterestCalculatorResultsComponent,
     ],
     imports: [
         BrowserModule,
