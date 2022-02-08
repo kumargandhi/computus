@@ -16,6 +16,8 @@ import { NumberFormatterPipe } from './commom/pipes/number-formatter.pipe';
 import { InfoComponent } from './commom/components/info/info.component';
 import { EMICalculatorInputsComponent } from './emi/emi-calculator-inputs/emi-calculator-inputs.component';
 import { EmiCalculatorResultsComponent } from './emi/emi-calculator-results/emi-calculator-results.component';
+import { InterestComponent } from './interest/interest.component';
+import { InterestCalculatorInputsComponent } from './interest/interest-calculator-inputs/interest-calculator-inputs.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import { EmiCalculatorResultsComponent } from './emi/emi-calculator-results/emi-
         EMICalculatorInputsComponent,
         InfoComponent,
         EmiCalculatorResultsComponent,
+        InterestComponent,
+        InterestCalculatorInputsComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,18 @@
+<div id="page-container">
+  <h4 class="row" id="page-title">{{ title }}</h4>
+  <p class="row" id="page-desc">
+    An equated monthly instalment (EMI) is a set monthly payment provided by
+    a borrower to a creditor on a set day, each month. EMIs apply to both
+    interest and principal each month, and the loan is paid off in full over
+    some years.
+  </p>
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <app-interest-calculator-inputs (inputsSubmitted)="inputsSubmitted($event)"></app-interest-calculator-inputs>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 p-0">
+    </div>
+  </div>
+</div>
