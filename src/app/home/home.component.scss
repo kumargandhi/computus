@@ -2,3 +2,15 @@
     width: 550px;
     height: 400px;
 }
+
+#page-container {
+    padding: 0;
+}
+
+.splash-img-container {
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/splash.png');
+    background-repeat: no-repeat;
+    background-size: 500px 500px
+}
