@@ -6,6 +6,10 @@
 
     .row {
         width: 100%;
+
+        & > .col-md-8, .col-md-4 {
+            padding: 0 !important;
+        }
     }
 
     table {

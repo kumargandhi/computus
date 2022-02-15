@@ -19,6 +19,7 @@ import { EmiCalculatorResultsComponent } from './emi/emi-calculator-results/emi-
 import { InterestComponent } from './interest/interest.component';
 import { InterestCalculatorInputsComponent } from './interest/interest-calculator-inputs/interest-calculator-inputs.component';
 import { InterestCalculatorResultsComponent } from './interest/interest-calculator-results/interest-calculator-results.component';
+import { CagrComponent } from './cagr/cagr.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { InterestCalculatorResultsComponent } from './interest/interest-calculat
         InterestComponent,
         InterestCalculatorInputsComponent,
         InterestCalculatorResultsComponent,
+        CagrComponent,
     ],
     imports: [
         BrowserModule,

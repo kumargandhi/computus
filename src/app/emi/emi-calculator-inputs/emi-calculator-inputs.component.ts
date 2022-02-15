@@ -40,14 +40,14 @@ export class EMICalculatorInputsComponent implements OnInit {
     ) {
         this.form = this._fb.group({
             loanAmount: [
-                800000,
+                265000,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern(INTEGER_REGEXP),
                 ]),
             ],
             interestRate: [
-                5.5,
+                3.5,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern(FLOATING_REGEXP),
