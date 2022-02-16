@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-cagr',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./cagr.component.scss'],
 })
 export class CagrComponent implements OnInit {
+    @Input() title = 'CAGR Calculator';
+
     constructor() {}
 
     ngOnInit(): void {}

@@ -20,6 +20,7 @@ import { InterestComponent } from './interest/interest.component';
 import { InterestCalculatorInputsComponent } from './interest/interest-calculator-inputs/interest-calculator-inputs.component';
 import { InterestCalculatorResultsComponent } from './interest/interest-calculator-results/interest-calculator-results.component';
 import { CagrComponent } from './cagr/cagr.component';
+import { CagrInputsComponent } from './cagr/cagr-inputs/cagr-inputs.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { CagrComponent } from './cagr/cagr.component';
         InterestCalculatorInputsComponent,
         InterestCalculatorResultsComponent,
         CagrComponent,
+        CagrInputsComponent,
     ],
     imports: [
         BrowserModule,
