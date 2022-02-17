@@ -1,0 +1,35 @@
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
+</div>
+<div class="data-container" *ngIf="resultsCalculated && !errorModel.errorMsg">
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Results</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
+            <span
+                class="fw-bold fs-5"
+                [class.text-danger]="computedValues.cagr < 0"
+                [class.text-success]="computedValues.cagr >= 0"
+            >
+                {{ computedValues?.cagr | nf }}
+            </span>
+            - is 'Compound Annualised Growth Rate'
+        </div>
+    </div>
+</div>

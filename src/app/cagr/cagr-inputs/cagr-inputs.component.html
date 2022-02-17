@@ -1,1 +1,111 @@
-<p>cagr-inputs works!</p>
+<div *ngIf="form?.invalid" class="alert alert-danger" role="alert">
+    Enter values in the form and click submit to compute the CAGR.
+</div>
+<form
+    class="needs-validation data-container"
+    [formGroup]="form"
+    [class.was-validated]="isFormSubmitted"
+>
+    <h5 class="text-secondary">Purchase item details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="purchaseValue" class="form-label"
+                    >Purchase value:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="purchaseValue"
+                    placeholder="Enter purchase value..."
+                    formControlName="purchaseValue"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['purchaseValue'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['purchaseValue'].errors?.required"
+                >
+                    Purchase value cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['purchaseValue'].errors?.pattern"
+                >
+                    Purchase value must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="presentValue" class="form-label"
+                    >Present value:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="presentValue"
+                    placeholder="Enter present value..."
+                    formControlName="presentValue"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['presentValue'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['presentValue'].errors?.required"
+                >
+                    Present value cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['presentValue'].errors?.pattern"
+                >
+                    Present value must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="years" class="form-label">Years:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="years"
+                    placeholder="Enter loan amount..."
+                    formControlName="years"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['years'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['years'].errors?.required"
+                >
+                    Years cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['years'].errors?.pattern"
+                >
+                    Years must be a positive integer
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Calculate
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
