@@ -5,6 +5,7 @@ import { MortgageComponent } from './mortgage/mortgage.component';
 import { EmiComponent } from './emi/emi.component';
 import { InterestComponent } from './interest/interest.component';
 import { CagrComponent } from './cagr/cagr.component';
+import { DebtFreeComponent } from './debt-free/debt-free.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'emi', component: EmiComponent },
     { path: 'interest', component: InterestComponent },
     { path: 'cagr', component: CagrComponent },
+    { path: 'debt-free', component: DebtFreeComponent },
 ];
 
 @NgModule({

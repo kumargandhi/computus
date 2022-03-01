@@ -9,6 +9,7 @@ import { DebtFreeInputsInterface } from '../debt-free-inputs/debt-free-inputs.in
 import { NumberFormatterPipe } from '../../commom/pipes/number-formatter.pipe';
 import { DEBT_FREE_PAYMENT_TYPE } from '../../commom/constants';
 import { jsPDF } from 'jspdf';
+import { createHeadersForPdfTable } from '../../commom/helpers';
 
 interface BalanceSheet {
     month: number;
@@ -75,6 +76,7 @@ export class DebtFreeResultsComponent implements OnInit {
             finalResultsForMonth: '',
             totalInterest: 0,
         };
+        this.balanceSheet = [];
 
         let calBalance = 0;
         do {
@@ -124,6 +126,8 @@ export class DebtFreeResultsComponent implements OnInit {
                 }
             }
         }
+        this._cd.markForCheck();
+        this.resultsCalculated = true;
     }
 
     getBalance(
@@ -155,5 +159,82 @@ export class DebtFreeResultsComponent implements OnInit {
         return Math.round(calBal * 100) / 100;
     }
 
-    exportToPDF() {}
+    exportToPDF() {
+        // Creating a unique file name for my PDF
+        const fileName =
+            this.title.replace(' ', '_') +
+            '_' +
+            Math.floor(Math.random() * 1000000 + 1) +
+            '.pdf';
+        const doc = new jsPDF();
+        doc.setFontSize(20);
+        doc.setFont('helvetica', 'bold');
+        const titleXPos =
+            doc.internal.pageSize.getWidth() / 2 -
+            doc.getTextWidth(this.title) / 2;
+        doc.text(this.title, titleXPos, 20);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(this._getLoanDetails(), 10, 30);
+        doc.table(
+            10,
+            105,
+            this._getPaymentInformation(),
+            createHeadersForPdfTable([
+                'Month',
+                'Interest',
+                'Principal',
+                'Balance',
+            ]),
+            { autoSize: false }
+        );
+        doc.save(fileName);
+    }
+
+    private _getLoanDetails() {
+        let loanDetails = '';
+        loanDetails =
+            'Debt details:' +
+            '\n\n' +
+            'Outstanding balance: ' +
+            this.nf.transform(this._calculatorInputs.balance);
+        loanDetails =
+            loanDetails +
+            '\n' +
+            'Yearly interest rate (%): ' +
+            this.nf.transform(this._calculatorInputs.interest);
+        loanDetails =
+            loanDetails +
+            '\n' +
+            'Debt free plan: ' +
+            this._calculatorInputs.paymentType;
+        loanDetails =
+            loanDetails + '\n' + 'Payment: ' + this._calculatorInputs.payment;
+        loanDetails = loanDetails + '\n\n' + 'Estimation to become debt free:';
+        loanDetails =
+            loanDetails +
+            '\n\n' +
+            this.computedValues.finalResultsForMonth +
+            ' - is total period to pay off debt.';
+        loanDetails =
+            loanDetails +
+            '\n' +
+            this.nf.transform(this.computedValues.totalInterest) +
+            ' - is your total interest paid.';
+        loanDetails = loanDetails + '\n\n' + 'Balance Sheet:';
+        return loanDetails;
+    }
+
+    private _getPaymentInformation(): any {
+        const tableData = [];
+        for (let i = 0; i < this.balanceSheet.length; i++) {
+            tableData.push({
+                Month: this.nf.transform(this.balanceSheet[i].month),
+                Interest: this.nf.transform(this.balanceSheet[i].interest),
+                Principal: this.nf.transform(this.balanceSheet[i].principal),
+                Balance: this.nf.transform(this.balanceSheet[i].balance),
+            });
+        }
+        return tableData;
+    }
 }

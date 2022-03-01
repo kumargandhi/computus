@@ -3,37 +3,56 @@
     class="alert alert-danger"
     role="alert"
 >
-  {{ errorModel.errorMsg }}
+    {{ errorModel.errorMsg }}
 </div>
 <div class="data-container" *ngIf="resultsCalculated && !errorModel.errorMsg">
-  <div class="row">
-    <div class="col-md-8">
-      <h5 class="text-secondary">Estimation to become debt free</h5>
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Estimation to become debt free</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
     </div>
-    <div class="col-md-4">
-      <button
-          class="btn btn-primary float-end"
-          type="submit"
-          (click)="exportToPDF()"
-      >
-        Export
-      </button>
-    </div>
-  </div>
-  <div class="row pt-2">
-    <div class="col-md-12 text-end">
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
-                {{ computedValues?.totalMonths | nf }}
+                {{ computedValues?.finalResultsForMonth }}
             </span>
-      Period to pay off.
+            - is total period to pay off debt.
+        </div>
     </div>
-  </div>
-  <div class="row pt-2">
-    <div class="col-md-12 text-end">
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
                 {{ computedValues?.totalInterest | nf }}
             </span>
-      - is your total interest.
+            - is your total interest paid.
+        </div>
     </div>
-  </div>
+    <h6 class="text-secondary text-center pt-2">Balance Sheet</h6>
+    <table class="table table-borderless table-striped mt-1">
+        <thead>
+            <tr>
+                <th scope="col">Month</th>
+                <th scope="col">Interest</th>
+                <th scope="col">Principal</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of balanceSheet">
+                <th scope="row">{{ item?.month }}</th>
+                <td>{{ item.interest | nf }}</td>
+                <td>{{ item.principal | nf }}</td>
+                <td>{{ item.balance | nf }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

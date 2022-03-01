@@ -19,6 +19,10 @@ export const Header_Menu = [
         label: 'CAGR',
         routerLink: ['cagr'],
     },
+    {
+        label: 'Debt Free',
+        routerLink: ['debt-free'],
+    },
 ];
 
 export const INTEGER_REGEXP = /^[0-9]*$/;

@@ -6,7 +6,7 @@
     [formGroup]="form"
     [class.was-validated]="isFormSubmitted"
 >
-    <h5 class="text-secondary">Loan details</h5>
+    <h5 class="text-secondary">Debt details</h5>
     <div class="row py-3">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -70,7 +70,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label pe-3">Choose debt free plan:</label>
-                <div class="form-check form-check-inline">
+                <div class="form-check">
                     <input
                         type="radio"
                         class="form-check-input"
@@ -91,7 +91,7 @@
                         >{{ DEBT_FREE_PAYMENT_TYPE.MIN_MONTHLY }}</label
                     >
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check">
                     <input
                         type="radio"
                         class="form-check-input"
@@ -117,8 +117,8 @@
                 <label for="payment" class="form-label"
                     >Amount you will pay to be debt free.</label
                 >
-                <label for="payment" class="form-label"
-                    >To find when I be debt free?</label
+                <p class="form-label"
+                    >To find when I be debt free?</p
                 >
                 <input
                     type="text"

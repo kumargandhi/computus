@@ -11,7 +11,7 @@ import { CalculatorInputsInterface } from '../calculator-inputs/calculator-input
 import { getBalance, getMonthlyPayment } from '../helpers';
 import { MonthlyPayment } from './calculator-results.interface';
 import { NumberFormatterPipe } from '../../commom/pipes/number-formatter.pipe';
-import { formatMoney } from '../../commom/helpers';
+import { createHeadersForPdfTable, formatMoney } from '../../commom/helpers';
 
 @Component({
     selector: 'app-calculator-results',
@@ -127,7 +127,7 @@ export class CalculatorResultsComponent implements OnInit {
             10,
             95,
             this._getPaymentInformation(),
-            this._createHeadersForPdfTable([
+            createHeadersForPdfTable([
                 'Month',
                 'Interest',
                 'Principal',
@@ -168,20 +168,6 @@ export class CalculatorResultsComponent implements OnInit {
             ' - is Total Interest Paid.';
         loanDetails = loanDetails + '\n\n' + 'Payment information:';
         return loanDetails;
-    }
-
-    private _createHeadersForPdfTable(keys: string[]) {
-        const result: CellConfig[] = [];
-        for (let i = 0; i < keys.length; i += 1) {
-            result.push({
-                name: keys[i],
-                prompt: keys[i],
-                width: 55,
-                align: 'center',
-                padding: 10,
-            });
-        }
-        return result;
     }
 
     private _getPaymentInformation(): any {

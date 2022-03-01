@@ -8,7 +8,7 @@ import { DebtFreeInputsInterface } from './debt-free-inputs/debt-free-inputs.int
     styleUrls: ['./debt-free.component.scss'],
 })
 export class DebtFreeComponent implements OnInit {
-    @Input() title = 'CAGR Calculator';
+    @Input() title = 'Debt Free Calculator';
 
     calculatorInputs!: DebtFreeInputsInterface;
 
