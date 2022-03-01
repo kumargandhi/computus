@@ -22,6 +22,9 @@ import { InterestCalculatorResultsComponent } from './interest/interest-calculat
 import { CagrComponent } from './cagr/cagr.component';
 import { CagrInputsComponent } from './cagr/cagr-inputs/cagr-inputs.component';
 import { CagrResultsComponent } from './cagr/cagr-results/cagr-results.component';
+import { DebtFreeComponent } from './debt-free/debt-free.component';
+import { DebtFreeInputsComponent } from './debt-free/debt-free-inputs/debt-free-inputs.component';
+import { DebtFreeResultsComponent } from './debt-free/debt-free-results/debt-free-results.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +45,9 @@ import { CagrResultsComponent } from './cagr/cagr-results/cagr-results.component
         CagrComponent,
         CagrInputsComponent,
         CagrResultsComponent,
+        DebtFreeComponent,
+        DebtFreeInputsComponent,
+        DebtFreeResultsComponent,
     ],
     imports: [
         BrowserModule,

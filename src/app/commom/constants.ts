@@ -37,3 +37,8 @@ export enum COMPOUNDED_INTEREST_TYPE {
     Daily = 'Daily',
     Continuously = 'Continuously',
 }
+
+export enum DEBT_FREE_PAYMENT_TYPE {
+    MIN_MONTHLY = 'Min. monthly payments',
+    FIXED_MONTHLY = 'Fixed monthly payments',
+}

@@ -1,0 +1,160 @@
+<div *ngIf="form?.invalid" class="alert alert-danger" role="alert">
+    Enter values in the form and click submit to compute the CAGR.
+</div>
+<form
+    class="needs-validation data-container"
+    [formGroup]="form"
+    [class.was-validated]="isFormSubmitted"
+>
+    <h5 class="text-secondary">Loan details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="balance" class="form-label"
+                    >Outstanding balance:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="balance"
+                    placeholder="Enter balance amount..."
+                    formControlName="balance"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['balance'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['balance'].errors?.required"
+                >
+                    Balance amount cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['balance'].errors?.pattern"
+                >
+                    Balance amount must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="interest" class="form-label"
+                    >Yearly interest rate (%):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="interest"
+                    placeholder="Enter interest..."
+                    formControlName="interest"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['interest'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interest'].errors?.required"
+                >
+                    Interest cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interest'].errors?.pattern"
+                >
+                    Interest must be a positive integer or decimal
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pe-3">Choose debt free plan:</label>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ DEBT_FREE_PAYMENT_TYPE.MIN_MONTHLY }}"
+                        value="{{ DEBT_FREE_PAYMENT_TYPE.MIN_MONTHLY }}"
+                        formControlName="paymentType"
+                        name="paymentType"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['paymentType'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ DEBT_FREE_PAYMENT_TYPE.MIN_MONTHLY }}"
+                        >{{ DEBT_FREE_PAYMENT_TYPE.MIN_MONTHLY }}</label
+                    >
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ DEBT_FREE_PAYMENT_TYPE.FIXED_MONTHLY }}"
+                        value="{{ DEBT_FREE_PAYMENT_TYPE.FIXED_MONTHLY }}"
+                        formControlName="paymentType"
+                        name="paymentType"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['paymentType'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ DEBT_FREE_PAYMENT_TYPE.FIXED_MONTHLY }}"
+                        >{{ DEBT_FREE_PAYMENT_TYPE.FIXED_MONTHLY }}</label
+                    >
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="payment" class="form-label"
+                    >Amount you will pay to be debt free.</label
+                >
+                <label for="payment" class="form-label"
+                    >To find when I be debt free?</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="payment"
+                    placeholder="Enter payment amount..."
+                    formControlName="payment"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['payment'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['payment'].errors?.required"
+                >
+                    Payment cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['payment'].errors?.pattern"
+                >
+                    Payment must be a positive integer
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Calculate
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
