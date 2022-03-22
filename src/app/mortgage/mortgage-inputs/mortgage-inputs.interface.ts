@@ -1,4 +1,4 @@
-export class CalculatorInputsInterface {
+export class MortgageInputsInterface {
     loanAmount!: number;
     interestRate!: number;
     loanTerm!: number;

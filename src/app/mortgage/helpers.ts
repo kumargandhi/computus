@@ -1,4 +1,4 @@
-import { MonthlyPayment } from './calculator-results/calculator-results.interface';
+import { MonthlyPayment } from './mortgage-results/mortgage-results.interface';
 import { formatMoney } from '../commom/helpers';
 
 /**

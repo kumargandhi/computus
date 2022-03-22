@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import { CalculatorInputsInterface } from './calculator-inputs/calculator-inputs.interface';
+import { MortgageInputsInterface } from './mortgage-inputs/mortgage-inputs.interface';
 
 @Component({
     selector: 'app-mortgage',
@@ -10,13 +10,13 @@ import { CalculatorInputsInterface } from './calculator-inputs/calculator-inputs
 export class MortgageComponent implements OnInit {
     @Input() title = 'Mortgage Calculator';
 
-    calculatorInputs!: CalculatorInputsInterface;
+    calculatorInputs!: MortgageInputsInterface;
 
     constructor() {}
 
     ngOnInit(): void {}
 
-    inputsSubmitted($event: CalculatorInputsInterface) {
+    inputsSubmitted($event: MortgageInputsInterface) {
         this.calculatorInputs = _.cloneDeep($event);
     }
 }

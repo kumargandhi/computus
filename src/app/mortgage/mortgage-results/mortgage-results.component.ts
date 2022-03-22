@@ -7,22 +7,22 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import { CellConfig, jsPDF } from 'jspdf';
-import { CalculatorInputsInterface } from '../calculator-inputs/calculator-inputs.interface';
+import { MortgageInputsInterface } from '../mortgage-inputs/mortgage-inputs.interface';
 import { getBalance, getMonthlyPayment } from '../helpers';
-import { MonthlyPayment } from './calculator-results.interface';
+import { MonthlyPayment } from './mortgage-results.interface';
 import { NumberFormatterPipe } from '../../commom/pipes/number-formatter.pipe';
 import { createHeadersForPdfTable, formatMoney } from '../../commom/helpers';
 
 @Component({
     selector: 'app-calculator-results',
-    templateUrl: './calculator-results.component.html',
-    styleUrls: ['./calculator-results.component.scss'],
+    templateUrl: './mortgage-results.component.html',
+    styleUrls: ['./mortgage-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalculatorResultsComponent implements OnInit {
-    _calculatorInputs!: CalculatorInputsInterface;
+export class MortgageResultsComponent implements OnInit {
+    _calculatorInputs!: MortgageInputsInterface;
 
-    computedValues!: CalculatorInputsInterface;
+    computedValues!: MortgageInputsInterface;
 
     errorModel = {
         errorMsg: '',
@@ -43,7 +43,7 @@ export class CalculatorResultsComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    set calculatorInputs(value: CalculatorInputsInterface) {
+    set calculatorInputs(value: MortgageInputsInterface) {
         if (value) {
             this._calculatorInputs = value;
             this.calculate();

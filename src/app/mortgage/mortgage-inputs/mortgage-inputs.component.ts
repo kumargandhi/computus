@@ -8,19 +8,19 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { CalculatorInputsInterface } from './calculator-inputs.interface';
+import { MortgageInputsInterface } from './mortgage-inputs.interface';
 import { FLOATING_REGEXP, INTEGER_REGEXP } from '../../commom/constants';
 import { DestroyService } from '../../commom/services/destroy.service';
 
 @Component({
     selector: 'app-calculator-inputs',
-    templateUrl: './calculator-inputs.component.html',
-    styleUrls: ['./calculator-inputs.component.scss'],
+    templateUrl: './mortgage-inputs.component.html',
+    styleUrls: ['./mortgage-inputs.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [DestroyService],
 })
-export class CalculatorInputsComponent implements OnInit {
-    @Output() inputsSubmitted = new EventEmitter<CalculatorInputsInterface>();
+export class MortgageInputsComponent implements OnInit {
+    @Output() inputsSubmitted = new EventEmitter<MortgageInputsInterface>();
 
     form: FormGroup;
 
