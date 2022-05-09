@@ -25,6 +25,8 @@ import { CagrResultsComponent } from './cagr/cagr-results/cagr-results.component
 import { DebtFreeComponent } from './debt-free/debt-free.component';
 import { DebtFreeInputsComponent } from './debt-free/debt-free-inputs/debt-free-inputs.component';
 import { DebtFreeResultsComponent } from './debt-free/debt-free-results/debt-free-results.component';
+import { RentReceiptsComponent } from './rent-receipts/rent-receipts.component';
+import { RentInputsComponent } from './rent-receipts/rent-inputs/rent-inputs.component';
 
 @NgModule({
     declarations: [
@@ -48,6 +50,8 @@ import { DebtFreeResultsComponent } from './debt-free/debt-free-results/debt-fre
         DebtFreeComponent,
         DebtFreeInputsComponent,
         DebtFreeResultsComponent,
+        RentReceiptsComponent,
+        RentInputsComponent,
     ],
     imports: [
         BrowserModule,

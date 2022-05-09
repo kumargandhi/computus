@@ -40,3 +40,13 @@
 .dropdown-item {
     cursor: pointer;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $theme-primary;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: $theme-primary;
+    border-color: $theme-primary-light;
+}

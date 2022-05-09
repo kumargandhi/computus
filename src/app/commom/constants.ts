@@ -1,4 +1,4 @@
-export const Header_Menu = [
+export const Calculators_Menu = [
     {
         label: 'Home',
         routerLink: ['home'],
@@ -22,6 +22,13 @@ export const Header_Menu = [
     {
         label: 'Debt Free',
         routerLink: ['debt-free'],
+    },
+];
+
+export const Tools_Menu = [
+    {
+        label: 'Rent receipt generator',
+        routerLink: ['rent-receipts'],
     },
 ];
 

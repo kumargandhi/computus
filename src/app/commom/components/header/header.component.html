@@ -21,7 +21,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto ms-5">
-                <li class="nav-item me-3" *ngFor="let item of Header_Menu">
+                <li class="nav-item me-3" *ngFor="let item of Calculators_Menu">
                     <a
                         class="nav-link"
                         aria-current="page"
@@ -29,6 +29,26 @@
                         [routerLinkActive]="'active'"
                         >{{ item.label }}</a
                     >
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-expanded="false"
+                        >Tools</a
+                    >
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let item of Tools_Menu">
+                            <a
+                                class="dropdown-item"
+                                [routerLink]="item.routerLink"
+                                [routerLinkActive]="'active'"
+                                >{{ item.label }}</a
+                            >
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <span class="navbar-text">

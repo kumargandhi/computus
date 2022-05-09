@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Header_Menu } from '../../constants';
+import { Calculators_Menu, Tools_Menu } from '../../constants';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { InfoComponent } from '../info/info.component';
 
@@ -9,7 +9,8 @@ import { InfoComponent } from '../info/info.component';
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-    readonly Header_Menu = Header_Menu;
+    readonly Calculators_Menu = Calculators_Menu;
+    readonly Tools_Menu = Tools_Menu;
     bsModalRef?: BsModalRef;
     constructor(private modalService: BsModalService) {
         // do nothing for now
