@@ -34,6 +34,7 @@ export const Tools_Menu = [
 
 export const INTEGER_REGEXP = /^[0-9]*$/;
 export const FLOATING_REGEXP = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
+export const PAN_REGEXP = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
 
 export enum EMI_TENURE {
     Yearly = 'Yearly',
@@ -52,4 +53,9 @@ export enum COMPOUNDED_INTEREST_TYPE {
 export enum DEBT_FREE_PAYMENT_TYPE {
     MIN_MONTHLY = 'Min. monthly payments',
     FIXED_MONTHLY = 'Fixed monthly payments',
+}
+
+export enum RECEIPT_FORMAT {
+    Monthly = 'Monthly',
+    Quarterly = 'Quarterly',
 }

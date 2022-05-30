@@ -1,1 +1,331 @@
-<p>rent-inputs works!</p>
+<div *ngIf="form?.invalid" class="alert alert-danger" role="alert">
+    Enter values in the form and click next to goto next form.
+</div>
+<form class="needs-validation data-container" [formGroup]="form">
+    <h5
+        class="text-secondary"
+        *ngIf="formMode === Form_Input_Mode.Basic_Details"
+    >
+        Basic details
+    </h5>
+    <h5
+        class="text-secondary"
+        *ngIf="formMode === Form_Input_Mode.Property_Details"
+    >
+        Property details
+    </h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div
+            class="col-md-6"
+            *ngIf="formMode === Form_Input_Mode.Basic_Details"
+        >
+            <div class="mb-3">
+                <label for="myName" class="form-label">My name:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="myName"
+                    placeholder="Enter name..."
+                    formControlName="myName"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['myName'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['myName'].errors?.required"
+                >
+                    Name cannot be empty
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="monthlyRent" class="form-label"
+                    >Monthly rent:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="monthlyRent"
+                    placeholder="Enter interest rate..."
+                    formControlName="monthlyRent"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['monthlyRent'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['monthlyRent'].errors?.required"
+                >
+                    Monthly rent cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['monthlyRent'].errors?.pattern"
+                >
+                    Monthly rent must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="panNumber" class="form-label"
+                    >PAN number (Optional):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="panNumber"
+                    placeholder="Enter term..."
+                    formControlName="panNumber"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['panNumber'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['panNumber'].errors?.required"
+                >
+                    PAN number cannot be empty
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="next()"
+                >
+                    Next
+                </button>
+            </div>
+        </div>
+        <div
+            class="col-md-6"
+            *ngIf="formMode === Form_Input_Mode.Property_Details"
+        >
+            <div class="mb-3">
+                <label class="form-label pe-3">Receipt format:</label>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ RECEIPT_FORMAT.Monthly }}"
+                        value="{{ RECEIPT_FORMAT.Monthly }}"
+                        formControlName="receiptFormat"
+                        name="receiptFormat"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['receiptFormat'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ RECEIPT_FORMAT.Monthly }}"
+                        >{{ RECEIPT_FORMAT.Monthly }}</label
+                    >
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="{{ RECEIPT_FORMAT.Quarterly }}"
+                        value="{{ RECEIPT_FORMAT.Quarterly }}"
+                        formControlName="receiptFormat"
+                        name="receiptFormat"
+                        [ngClass]="{
+                            'is-invalid':
+                                isFormSubmitted &&
+                                form.controls['receiptFormat'].errors
+                        }"
+                        required
+                    />
+                    <label
+                        class="form-check-label"
+                        for="{{ RECEIPT_FORMAT.Quarterly }}"
+                        >{{ RECEIPT_FORMAT.Quarterly }}</label
+                    >
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ownerName" class="form-label"
+                    >House owner's name:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="ownerName"
+                    placeholder="Enter house owner's name..."
+                    formControlName="ownerName"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['ownerName'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['ownerName'].errors?.required"
+                >
+                    House Owner name cannot be empty
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ownerPANNumber" class="form-label"
+                    >House owner's PAN number (Optional):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="ownerPANNumber"
+                    placeholder="Enter term..."
+                    formControlName="ownerPANNumber"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['ownerPANNumber'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['ownerPANNumber'].errors?.required"
+                >
+                    House owner PAN number cannot be empty
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <div>
+                        <label for="startDate" class="form-label"
+                            >Start date of rent receipts:</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="startDate"
+                            placeholder="Enter start date..."
+                            formControlName="startDate"
+                            bsDatepicker
+                            [bsConfig]="{ isAnimated: true }"
+                            [ngClass]="{
+                                'is-invalid':
+                                    isFormSubmitted &&
+                                    form.controls['startDate'].errors
+                            }"
+                            required
+                        />
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="form.controls['startDate'].errors?.required"
+                        >
+                            Start date cannot be empty
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="endDate" class="form-label"
+                            >End date of rent receipts:</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="endDate"
+                            placeholder="Enter end date..."
+                            formControlName="endDate"
+                            bsDatepicker
+                            [bsConfig]="{ isAnimated: true }"
+                            [ngClass]="{
+                                'is-invalid':
+                                    isFormSubmitted &&
+                                    form.controls['endDate'].errors
+                            }"
+                            required
+                        />
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="form.controls['endDate'].errors?.required"
+                        >
+                            End date cannot be empty
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label"
+                    >Rented house address:</label
+                >
+                <textarea
+                    name="address"
+                    class="form-control"
+                    id="address"
+                    placeholder="Enter address..."
+                    formControlName="address"
+                    rows="3"
+                    cols="10"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['address'].errors
+                    }"
+                    required
+                ></textarea>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['address'].errors?.required"
+                >
+                    Rented house address cannot be empty
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-start"
+                    type="submit"
+                    (click)="back()"
+                >
+                    Back
+                </button>
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="finish()"
+                >
+                    Generate receipts
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div style="text-align: center; margin-top: 40px">
+        <span
+            class="step"
+            [ngClass]="{
+                active: formMode === Form_Input_Mode.Basic_Details,
+                finish:
+                    formMode === Form_Input_Mode.Property_Details ||
+                    formMode === Form_Input_Mode.Finish
+            }"
+        ></span>
+        <span
+            class="step"
+            [ngClass]="{
+                active: formMode === Form_Input_Mode.Property_Details,
+                finish: formMode === Form_Input_Mode.Finish
+            }"
+        ></span>
+        <button
+            class="btn btn-primary float-end"
+            type="submit"
+            *ngIf="formMode === Form_Input_Mode.Finish"
+            (click)="editDetails()"
+        >
+            Edit details
+        </button>
+    </div>
+</form>

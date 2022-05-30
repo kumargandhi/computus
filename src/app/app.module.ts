@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { RentInputsComponent } from './rent-receipts/rent-inputs/rent-inputs.com
         AppRoutingModule,
         BrowserAnimationsModule,
         ModalModule.forRoot(),
+        BsDatepickerModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent],
