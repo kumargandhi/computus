@@ -34,7 +34,7 @@ export const Tools_Menu = [
 
 export const INTEGER_REGEXP = /^[0-9]*$/;
 export const FLOATING_REGEXP = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
-export const PAN_REGEXP = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
+export const PAN_REGEXP = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
 
 export enum EMI_TENURE {
     Yearly = 'Yearly',

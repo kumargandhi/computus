@@ -28,6 +28,7 @@ import { DebtFreeInputsComponent } from './debt-free/debt-free-inputs/debt-free-
 import { DebtFreeResultsComponent } from './debt-free/debt-free-results/debt-free-results.component';
 import { RentReceiptsComponent } from './rent-receipts/rent-receipts.component';
 import { RentInputsComponent } from './rent-receipts/rent-inputs/rent-inputs.component';
+import { RentResultsComponent } from './rent-receipts/rent-results/rent-results.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { RentInputsComponent } from './rent-receipts/rent-inputs/rent-inputs.com
         DebtFreeResultsComponent,
         RentReceiptsComponent,
         RentInputsComponent,
+        RentResultsComponent,
     ],
     imports: [
         BrowserModule,

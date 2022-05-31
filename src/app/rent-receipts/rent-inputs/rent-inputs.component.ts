@@ -75,9 +75,11 @@ export class RentInputsComponent implements OnInit {
                     Validators.pattern(PAN_REGEXP),
                 ]),
             ],
-            startDate: [null],
-            endDate: [null],
-            address: [null],
+            startDate: ['01/01/2022'],
+            endDate: ['03/31/2022'],
+            address: [
+                'Door No. 1, Gandhi road, Opp Anjeneya temple, Bangalore, 560066.',
+            ],
         });
         this.form.valueChanges
             .pipe(takeUntil(this._destroy$))
@@ -115,11 +117,27 @@ export class RentInputsComponent implements OnInit {
     validateForm() {
         this.isFormSubmitted = true;
         if (this.form.valid) {
-            const { myName, monthlyRent, panNumber } = this.form.controls;
+            const {
+                myName,
+                monthlyRent,
+                panNumber,
+                receiptFormat,
+                ownerName,
+                ownerPANNumber,
+                startDate,
+                endDate,
+                address,
+            } = this.form.controls;
             this.inputsSubmitted.emit({
                 myName: myName.value,
                 monthlyRent: monthlyRent.value,
                 panNumber: panNumber.value,
+                receiptFormat: receiptFormat.value,
+                ownerName: ownerName.value,
+                ownerPANNumber: ownerPANNumber.value,
+                startDate: startDate.value,
+                endDate: endDate.value,
+                address: address.value,
             });
         }
     }
