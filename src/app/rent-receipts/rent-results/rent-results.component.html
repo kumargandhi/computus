@@ -1,1 +1,43 @@
-<div class="rent-receipts"></div>
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
+</div>
+<div class="rent-format" *ngIf="resultsCalculated && !errorModel.errorMsg">
+    <div class="row pt-3">
+        <div class="col-md-4 text-left">
+            Rent receipt format: {{ previewRentReceipt?.receiptFormat }}
+        </div>
+        <div class="col-md-4 text-center fw-light">Receipt preview</div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="downloadReceipts()"
+            >
+                Download receipts
+            </button>
+        </div>
+    </div>
+</div>
+<div class="rent-receipts" *ngIf="resultsCalculated && !errorModel.errorMsg">
+    <div class="row">
+        <h3>Rent receipt</h3>
+    </div>
+    <div class="row pt-2">
+        <h6 class="fw-light">
+            from {{ previewRentReceipt.fromDate }} to
+            {{ previewRentReceipt.toDate }}
+        </h6>
+    </div>
+    <div class="row pt-3">
+        <div class="fs-6" [innerHTML]="previewRentReceipt.desc"></div>
+    </div>
+    <div class="row pt-5">
+        <div class="fs-6">Signature</div>
+        <div class="fs-5">{{ previewRentReceipt.ownerName }}</div>
+        <div class="fs-6">{{ previewRentReceipt.ownerPAN }}</div>
+    </div>
+</div>

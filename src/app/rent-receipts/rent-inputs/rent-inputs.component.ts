@@ -89,7 +89,7 @@ export class RentInputsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.validateForm();
+        // this.validateForm();
     }
 
     next() {
@@ -108,6 +108,7 @@ export class RentInputsComponent implements OnInit {
             // return;
         }
         this.formMode = Form_Input_Mode.Finish;
+        this.validateForm();
     }
 
     editDetails() {
