@@ -17,6 +17,21 @@
     height: 500px;
 }
 
+.home-footer {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 960px;
+    height: 60px;
+    background-color: var(--theme-gray-dark);
+    color: #fff;
+    padding: 20px;
+    .badge {
+        margin-right: 20px;
+    }
+}
+
 .splash-img {
     width: 50%;
     height: 100%;
