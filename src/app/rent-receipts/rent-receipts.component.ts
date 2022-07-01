@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 export class RentReceiptsComponent implements OnInit {
     @Input() title = 'Rent receipts generator';
 
-    calculatorInputs!: RentReceiptsInputsInterface;
+    calculatorInputs: RentReceiptsInputsInterface;
 
     constructor() {}
 
@@ -18,5 +18,9 @@ export class RentReceiptsComponent implements OnInit {
 
     inputsSubmitted($event: RentReceiptsInputsInterface) {
         this.calculatorInputs = _.cloneDeep($event);
+    }
+
+    goBack($event) {
+        this.calculatorInputs = null;
     }
 }

@@ -15,7 +15,7 @@ import { RentReceiptsInterface } from './rent-receipts.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RentResultsComponent implements OnInit {
-    _calculatorInputs!: RentReceiptsInputsInterface;
+    _calculatorInputs: RentReceiptsInputsInterface;
 
     // eslint-disable-next-line @typescript-eslint/ban-types
     computedValues: {} | undefined;
@@ -39,6 +39,9 @@ export class RentResultsComponent implements OnInit {
         if (value) {
             this._calculatorInputs = value;
             this.generateReceipts();
+        } else {
+            this._calculatorInputs = null;
+            this.resultsCalculated = false;
         }
     }
 
@@ -69,5 +72,8 @@ export class RentResultsComponent implements OnInit {
         return `Received sum of <strong>${this.previewRentReceipt.sumOf}</strong> from <strong>${this.previewRentReceipt.from}</strong> towards the rent of property located at ${this.previewRentReceipt.propertyAddress} for the period from ${this.previewRentReceipt.fromDate} to ${this.previewRentReceipt.toDate}`;
     }
 
+    /**
+     * Create the PDF receipts and download them.
+     */
     downloadReceipts() {}
 }

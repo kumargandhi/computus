@@ -35,6 +35,7 @@ export class RentInputsComponent implements OnInit {
     readonly RECEIPT_FORMAT = RECEIPT_FORMAT;
 
     @Output() inputsSubmitted = new EventEmitter<RentReceiptsInputsInterface>();
+    @Output() goBack = new EventEmitter<boolean>();
 
     form: FormGroup;
 
@@ -101,6 +102,7 @@ export class RentInputsComponent implements OnInit {
 
     back() {
         this.formMode = Form_Input_Mode.Basic_Details;
+        this.goBack.emit();
     }
 
     finish() {
