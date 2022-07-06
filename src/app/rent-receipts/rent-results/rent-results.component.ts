@@ -18,6 +18,9 @@ import { jsPDF } from 'jspdf';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RentResultsComponent implements OnInit {
+
+    @Input() title = '';
+
     _calculatorInputs: RentReceiptsInputsInterface;
 
     computedValues: {} | undefined;
@@ -80,12 +83,18 @@ export class RentResultsComponent implements OnInit {
      * Create the PDF receipts and download them.
      */
     downloadReceipts() {
-        const fileName = `${this._calculatorInputs.myName}.pdf`;
+        const fileName = `${this.title}.pdf`;
         const doc = new jsPDF();
         doc.html(this.rentReceiptsDiv.nativeElement as HTMLElement, {
             callback: (d) => {
                 d.save(fileName);
-            }
+            },
+            margin: 0,
+            autoPaging: true,
+            width: 200,
+            windowWidth: this.rentReceiptsDiv.nativeElement.clientWidth,
+            x: 5,
+            y: 0
         });
     }
 }
