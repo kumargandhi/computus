@@ -8,8 +8,10 @@ import {
     ViewChild,
 } from '@angular/core';
 import { RentReceiptsInputsInterface } from '../rent-inputs/rent-receipts-inputs.interface';
-import { RentReceiptsInterface } from './rent-receipts.interface';
+import { RentReceiptsInterface, ReceiptDateRangeInterface } from './rent-receipts.interface';
 import { jsPDF } from 'jspdf';
+import { RECEIPT_FORMAT } from 'src/app/commom/constants';
+import { getMonthDifference } from 'src/app/commom/helpers';
 
 @Component({
     selector: 'app-rent-results',
@@ -31,9 +33,11 @@ export class RentResultsComponent implements OnInit {
 
     resultsCalculated = false;
 
-    rentReceipts!: RentReceiptsInterface[];
+    receiptDateRanges!: ReceiptDateRangeInterface[];
 
     previewRentReceipt!: RentReceiptsInterface;
+
+    error: string;
 
     @ViewChild('rentReceiptsDiv') rentReceiptsDiv: ElementRef;
 
@@ -83,6 +87,26 @@ export class RentResultsComponent implements OnInit {
      * Create the PDF receipts and download them.
      */
     downloadReceipts() {
+        this.error = null;
+        this.receiptDateRanges = [];
+        // Generate the receipts data as per the format
+        // TODO : Need to compute the date ranges for monthly format
+        if (this.previewRentReceipt.receiptFormat === RECEIPT_FORMAT.Monthly) {
+            const totalMonths = getMonthDifference(this.previewRentReceipt.fromDate, this.previewRentReceipt.toDate);
+            if (!totalMonths) {
+                this.error = 'Please select valid months. Like, you need atleast a month gap between start and end dates.';
+                return;
+            }
+            for (let i = 0; i < totalMonths; i++) {
+                let dateRange: ReceiptDateRangeInterface = {
+                    fromDate: '',
+                    toDate: ''
+                };
+                this.receiptDateRanges.push(dateRange);
+            }
+        } else {
+            // TODO : For yearly
+        }
         const fileName = `${this.title}.pdf`;
         const doc = new jsPDF();
         doc.html(this.rentReceiptsDiv.nativeElement as HTMLElement, {

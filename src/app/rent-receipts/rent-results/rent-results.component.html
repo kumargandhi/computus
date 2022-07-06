@@ -8,9 +8,9 @@
 <div class="rent-format" *ngIf="resultsCalculated && !errorModel.errorMsg">
     <div class="row pt-3">
         <div class="col-md-4 text-left">
-            Rent receipt format: {{ previewRentReceipt?.receiptFormat }}
+            Receipt format: <strong>{{ previewRentReceipt?.receiptFormat }}</strong>
         </div>
-        <div class="col-md-4 text-center fw-light">Receipt preview</div>
+        <div class="col-md-4 text-center fw-light fs-4">Receipt preview</div>
         <div class="col-md-4">
             <button
                 class="btn btn-primary float-end"

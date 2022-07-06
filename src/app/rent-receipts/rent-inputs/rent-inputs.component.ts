@@ -76,8 +76,8 @@ export class RentInputsComponent implements OnInit {
                     Validators.pattern(PAN_REGEXP),
                 ]),
             ],
-            startDate: ['01/01/2022'],
-            endDate: ['03/31/2022'],
+            startDate: [new Date('01/01/2022')],
+            endDate: [new Date('03/31/2022')],
             address: [
                 'Door No. 1, Gandhi road, Opp Anjeneya temple, Bangalore, 560066.',
             ],
