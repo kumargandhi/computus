@@ -2,11 +2,14 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     Input,
     OnInit,
+    ViewChild,
 } from '@angular/core';
 import { RentReceiptsInputsInterface } from '../rent-inputs/rent-receipts-inputs.interface';
 import { RentReceiptsInterface } from './rent-receipts.interface';
+import { jsPDF } from 'jspdf';
 
 @Component({
     selector: 'app-rent-results',
@@ -17,7 +20,6 @@ import { RentReceiptsInterface } from './rent-receipts.interface';
 export class RentResultsComponent implements OnInit {
     _calculatorInputs: RentReceiptsInputsInterface;
 
-    // eslint-disable-next-line @typescript-eslint/ban-types
     computedValues: {} | undefined;
 
     errorModel = {
@@ -29,6 +31,8 @@ export class RentResultsComponent implements OnInit {
     rentReceipts!: RentReceiptsInterface[];
 
     previewRentReceipt!: RentReceiptsInterface;
+
+    @ViewChild('rentReceiptsDiv') rentReceiptsDiv: ElementRef;
 
     constructor(private _cd: ChangeDetectorRef) {}
 
@@ -75,5 +79,13 @@ export class RentResultsComponent implements OnInit {
     /**
      * Create the PDF receipts and download them.
      */
-    downloadReceipts() {}
+    downloadReceipts() {
+        const fileName = `${this._calculatorInputs.myName}.pdf`;
+        const doc = new jsPDF();
+        doc.html(this.rentReceiptsDiv.nativeElement as HTMLElement, {
+            callback: (d) => {
+                d.save(fileName);
+            }
+        });
+    }
 }
