@@ -3,6 +3,8 @@
 - All in one calculator for daily needs. 
 - Web application with financial tools and calculators.
 
+![Alt text](https://kumargandhi.github.io/assets/computus/screenshots/emi_calculator.png "EMI Calculator")
+
 ## Calculators
 At the moment we have the following calculators.
 - Mortgage
