@@ -8,7 +8,8 @@
 <div class="rent-format" *ngIf="resultsCalculated && !errorModel.errorMsg">
     <div class="row pt-3">
         <div class="col-md-4 text-left">
-            Receipt format: <strong>{{ previewRentReceipt?.receiptFormat }}</strong>
+            Receipt format:
+            <strong>{{ _calculatorInputs?.receiptFormat }}</strong>
         </div>
         <div class="col-md-4 text-center fw-light fs-4">Receipt preview</div>
         <div class="col-md-4">
@@ -22,22 +23,28 @@
         </div>
     </div>
 </div>
-<div #rentReceiptsDiv class="rent-receipts" *ngIf="resultsCalculated && !errorModel.errorMsg">
-    <div class="row">
-        <h3>Rent receipt</h3>
-    </div>
-    <div class="row pt-2">
-        <h6 class="fw-light">
-            from {{ previewRentReceipt.fromDate }} to
-            {{ previewRentReceipt.toDate }}
-        </h6>
-    </div>
-    <div class="row pt-3">
-        <div class="fs-6" [innerHTML]="previewRentReceipt.desc"></div>
-    </div>
-    <div class="row pt-5">
-        <div class="fs-6">Signature</div>
-        <div class="fs-5">{{ previewRentReceipt.ownerName }}</div>
-        <div class="fs-6">{{ previewRentReceipt.ownerPAN }}</div>
+<div
+    #rentReceiptsDiv
+    class="rent-receipts"
+    *ngIf="resultsCalculated && !errorModel.errorMsg"
+>
+    <div class="receipt" *ngFor="let item of receiptDateRanges">
+        <div class="row">
+            <h3>Rent receipt</h3>
+        </div>
+        <div class="row pt-2">
+            <h6 class="fw-light">
+                from {{ item.fromDate | date : 'dd/MM/yyyy' }} to
+                {{ item.toDate | date : 'dd/MM/yyyy' }}
+            </h6>
+        </div>
+        <div class="row pt-3">
+            <div class="fs-6" [innerHTML]="getDescriptionForPreview(item.fromDate, item.toDate)"></div>
+        </div>
+        <div class="row pt-5">
+            <div class="fs-6">Signature</div>
+            <div class="fs-5">{{ _calculatorInputs?.ownerName }}</div>
+            <div class="fs-6">{{ _calculatorInputs.ownerPANNumber }}</div>
+        </div>
     </div>
 </div>

@@ -1,8 +1,11 @@
 .rent-receipts {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 15px;
-    margin-top: 15px;
-    min-height: 250px;
+    padding-bottom: 15px;
+    .receipt {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 250px;
+    }
 }

@@ -8,24 +8,24 @@ import {
     ViewChild,
 } from '@angular/core';
 import { RentReceiptsInputsInterface } from '../rent-inputs/rent-receipts-inputs.interface';
-import { RentReceiptsInterface, ReceiptDateRangeInterface } from './rent-receipts.interface';
+import { ReceiptDateRangeInterface } from './rent-receipts.interface';
 import { jsPDF } from 'jspdf';
 import { RECEIPT_FORMAT } from 'src/app/commom/constants';
 import { getMonthDifference } from 'src/app/commom/helpers';
+import { cloneDeep } from 'lodash';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-rent-results',
     templateUrl: './rent-results.component.html',
     styleUrls: ['./rent-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [DatePipe],
 })
 export class RentResultsComponent implements OnInit {
-
     @Input() title = '';
 
     _calculatorInputs: RentReceiptsInputsInterface;
-
-    computedValues: {} | undefined;
 
     errorModel = {
         errorMsg: '',
@@ -35,13 +35,9 @@ export class RentResultsComponent implements OnInit {
 
     receiptDateRanges!: ReceiptDateRangeInterface[];
 
-    previewRentReceipt!: RentReceiptsInterface;
-
-    error: string;
-
     @ViewChild('rentReceiptsDiv') rentReceiptsDiv: ElementRef;
 
-    constructor(private _cd: ChangeDetectorRef) {}
+    constructor(private _cd: ChangeDetectorRef, private datePipe: DatePipe) {}
 
     ngOnInit(): void {}
 
@@ -62,51 +58,55 @@ export class RentResultsComponent implements OnInit {
     generateReceipts() {
         this.resultsCalculated = false;
         this.errorModel.errorMsg = '';
-        this.computedValues = {};
-        this.previewRentReceipt = {
-            receiptFormat: this._calculatorInputs.receiptFormat,
-            fromDate: this._calculatorInputs.startDate,
-            toDate: this._calculatorInputs.endDate,
-            sumOf: this._calculatorInputs.monthlyRent,
-            from: this._calculatorInputs.myName,
-            propertyAddress: this._calculatorInputs.address,
-            ownerName: this._calculatorInputs.ownerName,
-            ownerPAN: this._calculatorInputs.ownerPANNumber,
-            desc: '',
-        };
-        this.previewRentReceipt.desc = this.getDescriptionForPreview();
+        this.receiptDateRanges = [];
+        // Generate the receipts data as per the format
+        if (this._calculatorInputs.receiptFormat === RECEIPT_FORMAT.Monthly) {
+            const totalMonths = getMonthDifference(
+                this._calculatorInputs.startDate,
+                this._calculatorInputs.endDate
+            );
+            if (!totalMonths) {
+                this.errorModel.errorMsg =
+                    'Please select valid months. Like, you need atleast a month gap between start and end dates.';
+                return;
+            }
+            let startDate = cloneDeep(this._calculatorInputs.startDate);
+            for (let i = 0; i < totalMonths; i++) {
+                const fromDate = cloneDeep(startDate);
+                const toDate = new Date(
+                    startDate.setMonth(startDate.getMonth() + 1)
+                );
+                let dateRange: ReceiptDateRangeInterface = {
+                    fromDate: fromDate,
+                    toDate: toDate,
+                };
+                this.receiptDateRanges.push(dateRange);
+                startDate = cloneDeep(toDate);
+            }
+        } else {
+            // TODO : For yearly
+        }
         this._cd.markForCheck();
         this.resultsCalculated = true;
     }
 
-    getDescriptionForPreview() {
-        return `Received sum of <strong>${this.previewRentReceipt.sumOf}</strong> from <strong>${this.previewRentReceipt.from}</strong> towards the rent of property located at ${this.previewRentReceipt.propertyAddress} for the period from ${this.previewRentReceipt.fromDate} to ${this.previewRentReceipt.toDate}`;
+    getDescriptionForPreview(from: Date, to: Date) {
+        return `Received sum of <strong>${
+            this._calculatorInputs.monthlyRent
+        }</strong> from <strong>${
+            this._calculatorInputs.myName
+        }</strong> towards the rent of property located at ${
+            this._calculatorInputs.address
+        } for the period from ${this.datePipe.transform(
+            from,
+            'dd/MM/yyyy'
+        )} to ${this.datePipe.transform(to, 'dd/MM/yyyy')}`;
     }
 
     /**
      * Create the PDF receipts and download them.
      */
     downloadReceipts() {
-        this.error = null;
-        this.receiptDateRanges = [];
-        // Generate the receipts data as per the format
-        // TODO : Need to compute the date ranges for monthly format
-        if (this.previewRentReceipt.receiptFormat === RECEIPT_FORMAT.Monthly) {
-            const totalMonths = getMonthDifference(this.previewRentReceipt.fromDate, this.previewRentReceipt.toDate);
-            if (!totalMonths) {
-                this.error = 'Please select valid months. Like, you need atleast a month gap between start and end dates.';
-                return;
-            }
-            for (let i = 0; i < totalMonths; i++) {
-                let dateRange: ReceiptDateRangeInterface = {
-                    fromDate: '',
-                    toDate: ''
-                };
-                this.receiptDateRanges.push(dateRange);
-            }
-        } else {
-            // TODO : For yearly
-        }
         const fileName = `${this.title}.pdf`;
         const doc = new jsPDF();
         doc.html(this.rentReceiptsDiv.nativeElement as HTMLElement, {
@@ -118,7 +118,7 @@ export class RentResultsComponent implements OnInit {
             width: 200,
             windowWidth: this.rentReceiptsDiv.nativeElement.clientWidth,
             x: 5,
-            y: 0
+            y: 0,
         });
     }
 }
