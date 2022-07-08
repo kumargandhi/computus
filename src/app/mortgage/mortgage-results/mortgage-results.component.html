@@ -49,9 +49,9 @@
         <tbody>
             <tr *ngFor="let item of monthlyPayments">
                 <th scope="row">{{ item.monthlyResult?.month }}</th>
-                <td>{{ item.monthlyResult?.interest | nf }}</td>
-                <td>{{ item.monthlyResult?.principal | nf }}</td>
-                <td>{{ item.monthlyResult?.balance | nf }}</td>
+                <td>{{ item.monthlyResult?.interest }}</td>
+                <td>{{ item.monthlyResult?.principal }}</td>
+                <td [ngClass]="{'text-white bg-success': item.monthlyResult?.balance === 0}">{{ item.monthlyResult?.balance }}</td>
             </tr>
         </tbody>
     </table>

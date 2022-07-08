@@ -6,6 +6,9 @@ import { formatMoney } from '../helpers';
 })
 export class NumberFormatterPipe implements PipeTransform {
     transform(value: number | undefined): string {
+        if (value === 0) {
+            return '0';
+        }
         if (!value) {
             return '';
         }
