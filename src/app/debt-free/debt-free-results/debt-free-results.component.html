@@ -51,7 +51,7 @@
                 <th scope="row">{{ item?.month }}</th>
                 <td>{{ item.interest | nf }}</td>
                 <td>{{ item.principal | nf }}</td>
-                <td>{{ item.balance | nf }}</td>
+                <td [ngClass]="{'text-white bg-success': item.balance === 0}">{{ item.balance | nf }}</td>
             </tr>
         </tbody>
     </table>
