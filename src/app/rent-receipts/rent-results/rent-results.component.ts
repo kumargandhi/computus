@@ -59,15 +59,16 @@ export class RentResultsComponent implements OnInit {
         this.resultsCalculated = false;
         this.errorModel.errorMsg = '';
         this.receiptDateRanges = [];
-        // Generate the receipts data as per the format
+        const totalMonths = getMonthDifference(
+            this._calculatorInputs.startDate,
+            this._calculatorInputs.endDate
+        );
+        // Generate the receipts data as per the selected format
         if (this._calculatorInputs.receiptFormat === RECEIPT_FORMAT.Monthly) {
-            const totalMonths = getMonthDifference(
-                this._calculatorInputs.startDate,
-                this._calculatorInputs.endDate
-            );
             if (!totalMonths) {
                 this.errorModel.errorMsg =
-                    'Please select valid months. Like, you need atleast a month gap between start and end dates.';
+                    'Please select valid months for Monthly receipt format. Like, you need atleast a month gap between start and end dates.';
+                this.resultsCalculated = true;
                 return;
             }
             let startDate = cloneDeep(this._calculatorInputs.startDate);
@@ -84,7 +85,26 @@ export class RentResultsComponent implements OnInit {
                 startDate = cloneDeep(toDate);
             }
         } else {
-            // TODO : For yearly
+            if (totalMonths < 2) {
+                this.errorModel.errorMsg =
+                    'Please select valid months for Quarterly receipt format. Like, you need atleast three months gap between start and end dates.';
+                this.resultsCalculated = true;
+                return;
+            }
+            let startDate = cloneDeep(this._calculatorInputs.startDate);
+            const totalQtrs = totalMonths / 3;
+            for (let i = 0; i < totalQtrs; i++) {
+                const fromDate = cloneDeep(startDate);
+                const toDate = new Date(
+                    startDate.setMonth(startDate.getMonth() + 2)
+                );
+                let dateRange: ReceiptDateRangeInterface = {
+                    fromDate: fromDate,
+                    toDate: toDate,
+                };
+                this.receiptDateRanges.push(dateRange);
+                startDate = cloneDeep(toDate);
+            }
         }
         this._cd.markForCheck();
         this.resultsCalculated = true;
