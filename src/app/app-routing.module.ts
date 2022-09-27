@@ -7,6 +7,7 @@ import { InterestComponent } from './interest/interest.component';
 import { CagrComponent } from './cagr/cagr.component';
 import { DebtFreeComponent } from './debt-free/debt-free.component';
 import { RentReceiptsComponent } from './rent-receipts/rent-receipts.component';
+import { InflationComponent } from './inflation/inflation.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'interest', component: InterestComponent },
     { path: 'cagr', component: CagrComponent },
     { path: 'debt-free', component: DebtFreeComponent },
+    { path: 'inflation', component: InflationComponent },
     { path: 'rent-receipts', component: RentReceiptsComponent },
 ];
 

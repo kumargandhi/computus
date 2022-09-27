@@ -23,6 +23,10 @@ export const Calculators_Menu = [
         label: 'Debt Free',
         routerLink: ['debt-free'],
     },
+    {
+        label: 'Inflation',
+        routerLink: ['inflation'],
+    },
 ];
 
 export const Tools_Menu = [
