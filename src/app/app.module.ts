@@ -31,6 +31,7 @@ import { RentInputsComponent } from './rent-receipts/rent-inputs/rent-inputs.com
 import { RentResultsComponent } from './rent-receipts/rent-results/rent-results.component';
 import { InflationComponent } from './inflation/inflation.component';
 import { InflationInputsComponent } from './inflation/inputs/inflation-inputs.component';
+import { InflationResultsComponent } from './inflation/results/inflation-results.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { InflationInputsComponent } from './inflation/inputs/inflation-inputs.co
         RentInputsComponent,
         RentResultsComponent,
         InflationComponent,
-        InflationInputsComponent
+        InflationInputsComponent,
+        InflationResultsComponent,
     ],
     imports: [
         BrowserModule,

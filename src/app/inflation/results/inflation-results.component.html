@@ -1,0 +1,23 @@
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
+</div>
+<div class="data-container" *ngIf="resultsCalculated && !errorModel.errorMsg">
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Results</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
+    </div>
+</div>
