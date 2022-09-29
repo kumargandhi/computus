@@ -1,0 +1,107 @@
+<div *ngIf="form?.invalid" class="alert alert-danger" role="alert">
+    Enter values in the form and click submit to compute the Inflation.
+</div>
+<form class="needs-validation data-container" [formGroup]="form">
+    <h5 class="text-secondary">Inflation details</h5>
+    <div class="row py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="monthlyExpenses" class="form-label"
+                    >Monthly Expenses:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="monthlyExpenses"
+                    placeholder="Enter monthly expenses..."
+                    formControlName="monthlyExpenses"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['monthlyExpenses'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['monthlyExpenses'].errors?.required"
+                >
+                    Monthly expenses cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['monthlyExpenses'].errors?.pattern"
+                >
+                    Monthly expenses must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="years" class="form-label">Years:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="years"
+                    placeholder="Enter loan amount..."
+                    formControlName="years"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['years'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['years'].errors?.required"
+                >
+                    Years cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['years'].errors?.pattern"
+                >
+                    Years must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="inflationRate" class="form-label"
+                    >Inflation rate(%):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="inflationRate"
+                    placeholder="Enter inflation rate..."
+                    formControlName="inflationRate"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['inflationRate'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['inflationRate'].errors?.required"
+                >
+                    Inflation rate cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['inflationRate'].errors?.pattern"
+                >
+                    Inflation rate must be a positive integer or decimal
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Calculate
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+<div id="page-container">
+    <h4 class="row" id="page-title">{{ title }}</h4>
+    <p class="row" id="page-desc">
+        Inflation is the rate at which prices for goods and services rise. When
+        the general price level rises, each unit of currency buys fewer goods
+        and services; consequently, inflation corresponds to a reduction in the
+        purchasing power of money.
+    </p>
+    <p class="row" id="page-desc">
+        The common measure of inflation is the inflation rate, the annualized
+        percentage change in a general price index.
+    </p>
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <app-inflation-inputs
+                (inputsSubmitted)="inputsSubmitted($event)"
+            ></app-inflation-inputs>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <app-inflation-results
+                [title]="title"
+                [calculatorInputs]="calculatorInputs"
+            ></app-inflation-results>
+        </div>
+    </div>
+</div>
