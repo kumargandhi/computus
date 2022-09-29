@@ -20,4 +20,37 @@
             </button>
         </div>
     </div>
+    <div class="row pt-2">
+        <div class="col-md-12 text-end">
+            <span
+                class="fw-bold fs-5"
+                [class.text-danger]="computedValues.requiredMonthlyExpenses < 0"
+                [class.text-primary]="computedValues.requiredMonthlyExpenses >= 0"
+            >
+                {{ computedValues?.requiredMonthlyExpenses | nf }}
+            </span>
+            - is required for monthly expense in
+            {{ computedValues.years }} years.
+        </div>
+        <div class="col-md-12 text-end">
+            <span
+                class="fw-bold fs-5"
+                [class.text-danger]="computedValues.inflationRate < 0"
+                [class.text-primary]="computedValues.inflationRate >= 0"
+            >
+                @{{ computedValues?.inflationRate | nf }} %
+            </span>
+            - is inflation rate.
+        </div>
+        <div class="col-md-12 text-end">
+            <span
+                class="fw-bold fs-5"
+                [class.text-danger]="computedValues.futureExpenses < 0"
+                [class.text-primary]="computedValues.futureExpenses >= 0"
+            >
+                {{ computedValues?.futureExpenses | nf }}
+            </span>
+            - more you require at {{ computedValues.years }} years.
+        </div>
+    </div>
 </div>

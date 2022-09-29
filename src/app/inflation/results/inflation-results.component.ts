@@ -24,6 +24,8 @@ export class InflationResultsComponent implements OnInit {
         monthlyExpenses: 0,
         years: 0,
         inflationRate: 0,
+        requiredMonthlyExpenses: 0,
+        futureExpenses: 0,
     };
 
     errorModel = {
@@ -49,15 +51,22 @@ export class InflationResultsComponent implements OnInit {
     /**
      * Calculate Inflation.
      */
-     calculate() {
+    calculate() {
         this.resultsCalculated = false;
         this.errorModel.errorMsg = '';
+        const cInflationRate = this._calculatorInputs.inflationRate / 100;
+        const requiredMonthlyExpenses =
+            this._calculatorInputs.monthlyExpenses *
+            Math.pow(1 + cInflationRate, this._calculatorInputs.years);
         this.computedValues = {
             monthlyExpenses: this._calculatorInputs.monthlyExpenses,
             years: this._calculatorInputs.years,
-            inflationRate: this._calculatorInputs.inflationRate,
+            inflationRate: cInflationRate,
+            requiredMonthlyExpenses: requiredMonthlyExpenses,
+            futureExpenses:
+                requiredMonthlyExpenses -
+                this._calculatorInputs.monthlyExpenses,
         };
-        // TODO : Compute the inflation
         this._cd.markForCheck();
         this.resultsCalculated = true;
     }
@@ -84,6 +93,27 @@ export class InflationResultsComponent implements OnInit {
 
     private _getLoanDetails() {
         let loanDetails = '';
+        loanDetails =
+            'Inflation details:' +
+            '\n\n' +
+            'Monthly Expenses: ' +
+            this.nf.transform(this._calculatorInputs.monthlyExpenses);
+        loanDetails +=
+            '\n' + 'Years: ' + this.nf.transform(this._calculatorInputs.years);
+        loanDetails +=
+            '\n' +
+            'Inflation Rate: ' +
+            this.nf.transform(this._calculatorInputs.inflationRate);
+
+        loanDetails += '\n\n' + 'Summary:';
+        loanDetails +=
+            '\n\n' +
+            this.nf.transform(this.computedValues.requiredMonthlyExpenses) +
+            ` - is required for monthly expense in ${this.computedValues.years} years`;
+        loanDetails +=
+            '\n\n' +
+            this.nf.transform(this.computedValues.futureExpenses) +
+            ` - more you require at ${this.computedValues.years} years`;
         return loanDetails;
     }
 }
